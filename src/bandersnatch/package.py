@@ -345,6 +345,7 @@ class Package:
 
         # Avoid downloading again if we have the file and it matches the hash.
         if path.exists():
+            return None # Don't verify exisiting files
             existing_hash = utils.hash(str(path))
             if existing_hash == sha256sum:
                 return None
