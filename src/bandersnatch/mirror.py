@@ -108,8 +108,8 @@ class Mirror:
 
         self.determine_packages_to_sync()
         self.sync_packages()
-        self.sync_index_page()
-        self.wrapup_successful_sync()
+        #self.sync_index_page()
+        #self.wrapup_successful_sync()
 
         return self.altered_packages
 
@@ -167,7 +167,12 @@ class Mirror:
         self.packages_to_sync = {}
         logger.info(f"Current mirror serial: {self.synced_serial}")
 
-        if self.todolist.exists():
+        if True: #hack !!
+            logger.info("Sync specified packages")
+            self.packages_to_sync['black'] = 4940783
+            #self.packages_to_sync['tensorflow'] = 4940783
+
+        elif self.todolist.exists():
             # We started a sync previously and left a todo list as well as the
             # targetted serial. We'll try to keep going through the todo list
             # and then mark the targetted serial as done.
