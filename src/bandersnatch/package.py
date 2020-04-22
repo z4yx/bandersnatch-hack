@@ -124,7 +124,8 @@ class Package:
                     self.sync_simple_page()
                     self.mirror.record_finished_package(self.name)
                     break
-                except StalePage:
+                except StalePage as e:
+                    print(e)
                     self.tries += 1
                     logger.error(
                         "Stale serial for package {} - Attempt {}".format(
