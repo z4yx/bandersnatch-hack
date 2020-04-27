@@ -135,15 +135,15 @@ async def verify(
                 else:
                     await url_fetch(jpkg["url"], pkg_file, executor)
 
-            calc_sha256 = await loop.run_in_executor(executor, hash, str(pkg_file))
-            if calc_sha256 != jpkg["digests"]["sha256"]:
-                if not args.dry_run:
-                    await loop.run_in_executor(None, pkg_file.unlink)
-                    await url_fetch(jpkg["url"], pkg_file, executor)
-                else:
-                    logger.info(
-                        f"[DRY RUN] {jpkg['info']['name']} has a sha256 mismatch."
-                    )
+            #calc_sha256 = await loop.run_in_executor(executor, hash, str(pkg_file))
+            #if calc_sha256 != jpkg["digests"]["sha256"]:
+            #    if not args.dry_run:
+            #        await loop.run_in_executor(None, pkg_file.unlink)
+            #        await url_fetch(jpkg["url"], pkg_file, executor)
+            #    else:
+            #        logger.info(
+            #            f"[DRY RUN] {jpkg['info']['name']} has a sha256 mismatch."
+            #        )
 
             all_package_files.append(pkg_file)
 
