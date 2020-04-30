@@ -169,8 +169,14 @@ class Mirror:
 
         if True: #hack !!
             logger.info("Sync specified packages")
+            with open('packages-to-sync.list') as l:
+                for pack in l:
+                    pack = pack.strip()
+                    if len(pack)==0: continue
+                    #print(pack)
+                    self.packages_to_sync[pack] = 1
             ## cat <mirrors>/pypi/web/json/uvloop |grep serial
-            self.packages_to_sync['uvloop'] = 6082374
+            #self.packages_to_sync['abiflows'] = 1
             #self.packages_to_sync['tensorflow'] = 4940783
 
         elif self.todolist.exists():
